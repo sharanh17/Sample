@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import './App.css'; // Add CSS file for styling
+
+import CountdownTimer from './components/CountdownTimer';
+import InputForm from './components/InputForm';
 
 function App() {
+  const [targetDate, setTargetDate] = useState(null);
+
+  const handleSetTargetDate = (date) => {
+    setTargetDate(date);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Countdown Timer</h1>
+      <InputForm onSetTargetDate={handleSetTargetDate} />
+      {targetDate && <CountdownTimer targetDate={targetDate} />}
     </div>
   );
 }
